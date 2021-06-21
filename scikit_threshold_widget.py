@@ -1,7 +1,7 @@
-from ikomia import utils, core, dataprocess
-import scikit_threshold_process as processMod
-
-#PyQt GUI framework
+from ikomia import core, dataprocess
+from ikomia.utils import qtconversion
+from scikit_threshold.scikit_threshold_process import scikit_thresholdParam
+# PyQt GUI framework
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
@@ -9,13 +9,13 @@ from PyQt5.QtCore import *
 # - Class which implements widget associated with the process
 # - Inherits core.CProtocolTaskWidget from Ikomia API
 # --------------------
-class scikit_thresholdWidget(core.CProtocolTaskWidget):
+class scikit_thresholdWidget(core.CWorkflowTaskWidget):
 
     def __init__(self, param, parent):
-        core.CProtocolTaskWidget.__init__(self, parent)
+        core.CWorkflowTaskWidget.__init__(self, parent)
 
         if param is None:
-            self.parameters = processMod.scikit_thresholdParam()
+            self.parameters = scikit_thresholdParam()
         else:
             self.parameters = param
 
@@ -66,7 +66,7 @@ class scikit_thresholdWidget(core.CProtocolTaskWidget):
         self.stack.addWidget(self.stack_sauvola)
         self.gridLayout.addWidget(self.stack, 2, 0)
 
-        layout_ptr = utils.PyQtToQt(self.gridLayout)
+        layout_ptr = qtconversion.PyQtToQt(self.gridLayout)
         self.setLayout(layout_ptr)
 
         # update left parameter panel

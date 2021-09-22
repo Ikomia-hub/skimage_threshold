@@ -1,21 +1,22 @@
 from ikomia import core, dataprocess
 from ikomia.utils import qtconversion
-from scikit_threshold.scikit_threshold_process import scikit_thresholdParam
+from skimage_threshold.skimage_threshold_process import ThresholdParam
 # PyQt GUI framework
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
+
 
 # --------------------
 # - Class which implements widget associated with the process
 # - Inherits core.CProtocolTaskWidget from Ikomia API
 # --------------------
-class scikit_thresholdWidget(core.CWorkflowTaskWidget):
+class ThresholdWidget(core.CWorkflowTaskWidget):
 
     def __init__(self, param, parent):
         core.CWorkflowTaskWidget.__init__(self, parent)
 
         if param is None:
-            self.parameters = scikit_thresholdParam()
+            self.parameters = ThresholdParam()
         else:
             self.parameters = param
 
@@ -617,17 +618,18 @@ class scikit_thresholdWidget(core.CWorkflowTaskWidget):
         # Send signal to launch the process
         self.emitApply(self.parameters)
 
-#--------------------
-#- Factory class to build process widget object
-#- Inherits dataprocess.CWidgetFactory from Ikomia API
-#--------------------
-class scikit_thresholdWidgetFactory(dataprocess.CWidgetFactory):
+
+# --------------------
+# - Factory class to build process widget object
+# - Inherits dataprocess.CWidgetFactory from Ikomia API
+# --------------------
+class ThresholdWidgetFactory(dataprocess.CWidgetFactory):
 
     def __init__(self):
         dataprocess.CWidgetFactory.__init__(self)
         # Set the name of the process -> it must be the same as the one declared in the process factory class
-        self.name = "scikit_threshold"
+        self.name = "skimage_threshold"
 
     def create(self, param):
         # Create widget object
-        return scikit_thresholdWidget(param, None)
+        return ThresholdWidget(param, None)

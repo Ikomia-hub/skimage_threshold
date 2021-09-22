@@ -9,7 +9,7 @@ import numpy as np
 # - Class to handle the process parameters
 # - Inherits core.CProtocolTaskParam from Ikomia API
 # --------------------
-class scikit_thresholdParam(core.CWorkflowTaskParam):
+class ThresholdParam(core.CWorkflowTaskParam):
 
     def __init__(self):
         core.CWorkflowTaskParam.__init__(self)
@@ -95,13 +95,13 @@ class scikit_thresholdParam(core.CWorkflowTaskParam):
 # - Class which implements the process
 # - Inherits core.CProtocolTask or derived from Ikomia API
 # --------------------
-class scikit_thresholdProcess(dataprocess.C2dImageTask):
+class Threshold(dataprocess.C2dImageTask):
 
     def __init__(self, name, param):
         dataprocess.C2dImageTask.__init__(self, name)
 
         if param is None:
-            self.setParam(scikit_thresholdParam())
+            self.setParam(ThresholdParam())
         else:
             self.setParam(copy.deepcopy(param))
 
@@ -181,12 +181,12 @@ class scikit_thresholdProcess(dataprocess.C2dImageTask):
 # - Factory class to build process object
 # - Inherits dataprocess.CProcessFactory from Ikomia API
 # --------------------
-class scikit_thresholdProcessFactory(dataprocess.CTaskFactory):
+class ThresholdFactory(dataprocess.CTaskFactory):
 
     def __init__(self):
         dataprocess.CTaskFactory.__init__(self)
         # process information
-        self.info.name = "scikit_threshold"
+        self.info.name = "skimage_threshold"
         self.info.shortDescription = "Compilation of well-known thresholding methods from scikit-image library."
         self.info.description = "Compilation of well-known thresholding methods from scikit-image library: " \
                                 "Otsu, Multi-Otsu, Yen, IsoData, Li, Mean, Minimum, Local, Niblack, Sauvola " \
@@ -205,4 +205,4 @@ class scikit_thresholdProcessFactory(dataprocess.CTaskFactory):
 
     def create(self, param=None):
         # Create process object
-        return scikit_thresholdProcess(self.info.name, param)
+        return Threshold(self.info.name, param)

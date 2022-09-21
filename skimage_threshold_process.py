@@ -39,7 +39,7 @@ class ThresholdParam(core.CWorkflowTaskParam):
 
     def setParamMap(self, paramMap):
         # set parameters values from Ikomia application
-        self.local_method = int(paramMap["local_method"])
+        self.local_method = paramMap["local_method"]
         self.local_block_size = int(paramMap["local_block_size"])
         self.local_offset = int(paramMap["local_offset"])
         self.local_mth = int(paramMap["local_mth"])
@@ -66,7 +66,7 @@ class ThresholdParam(core.CWorkflowTaskParam):
     def getParamMap(self):
         # Send parameters values to Ikomia application
         paramMap = core.ParamMap()
-        paramMap["local_method"] = str(self.local_method)
+        paramMap["local_method"] = self.local_method
         paramMap["local_block_size"] = str(self.local_block_size)
         paramMap["local_offset"] = str(self.local_offset)
         paramMap["local_mth"] = str(self.local_mth)

@@ -5,6 +5,11 @@ import cv2
 import numpy as np
 
 
+def float_or_none(s):
+    if s == 'None':
+        return None
+    return float(s)
+
 # --------------------
 # - Class to handle the process parameters
 # - Inherits core.CProtocolTaskParam from Ikomia API
@@ -42,25 +47,25 @@ class ThresholdParam(core.CWorkflowTaskParam):
         self.local_method = paramMap["local_method"]
         self.local_block_size = int(paramMap["local_block_size"])
         self.local_offset = int(paramMap["local_offset"])
-        self.local_mth = int(paramMap["local_mth"])
-        self.local_mode = int(paramMap["local_mode"])
+        self.local_mth = paramMap["local_mth"]
+        self.local_mode = paramMap["local_mode"]
         self.local_cval = int(paramMap["local_cval"])
-        self.local_param = int(paramMap["local_param"])
+        self.local_param = float_or_none(paramMap["local_param"])
         self.niblackSauvola_window_size = int(paramMap["niblackSauvola_window_size"])
-        self.niblackSauvola_k = int(paramMap["niblackSauvola_k"])
-        self.sauvola_r = int(paramMap["sauvola_r"])
+        self.niblackSauvola_k = float(paramMap["niblackSauvola_k"])
+        self.sauvola_r = float_or_none(paramMap["sauvola_r"])
         self.triangle_nbins = int(paramMap["triangle_nbins"])
         self.multiotsu_classes = int(paramMap["multiotsu_classes"])
         self.multiotsu_nbins = int(paramMap["multiotsu_nbins"])
-        self.hysteresis_low = int(paramMap["hysteresis_low"])
-        self.hysteresis_hight = int(paramMap["hysteresis_hight"])
+        self.hysteresis_low = float(paramMap["hysteresis_low"])
+        self.hysteresis_hight = float(paramMap["hysteresis_hight"])
         self.minimum_nbins = int(paramMap["minimum_nbins"])
         self.minimum_maxiter = int(paramMap["minimum_maxiter"])
         self.otsu_nbins = int(paramMap["otsu_nbins"])
         self.yen_nbins = int(paramMap["yen_nbins"])
         self.isodata_nbins = int(paramMap["isodata_nbins"])
-        self.li_tolerance = int(paramMap["li_tolerance"])
-        self.li_initialguess = int(paramMap["li_initialguess"])
+        self.li_tolerance = float_or_none(paramMap["li_tolerance"])
+        self.li_initialguess = float_or_none(paramMap["li_initialguess"])
 
 
     def getParamMap(self):
@@ -69,8 +74,8 @@ class ThresholdParam(core.CWorkflowTaskParam):
         paramMap["local_method"] = self.local_method
         paramMap["local_block_size"] = str(self.local_block_size)
         paramMap["local_offset"] = str(self.local_offset)
-        paramMap["local_mth"] = str(self.local_mth)
-        paramMap["local_mode"] = str(self.local_mode)
+        paramMap["local_mth"] = self.local_mth
+        paramMap["local_mode"] = self.local_mode
         paramMap["local_cval"] = str(self.local_cval)
         paramMap["local_param"] = str(self.local_param)
         paramMap["niblackSauvola_window_size"] = str(self.niblackSauvola_window_size)

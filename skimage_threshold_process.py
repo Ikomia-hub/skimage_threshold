@@ -202,7 +202,7 @@ class ThresholdFactory(dataprocess.CTaskFactory):
         self.info.journal = ""
         self.info.year = 2020
         self.info.license = "MIT License"
-        self.info.version = "1.0.0"
+        self.info.version = "1.0.1"
         self.info.repo = "https://github.com/Ikomia-dev/IkomiaPluginsPython"
         self.info.documentationLink = "https://scikit-image.org/docs/dev/api/skimage.filters.html"
         self.info.iconPath = "icons/scikit.png"

@@ -42,7 +42,7 @@ class ThresholdParam(core.CWorkflowTaskParam):
         self.li_tolerance = None
         self.li_initialguess = None
 
-    def setParamMap(self, paramMap):
+    def set_values(self, paramMap):
         # set parameters values from Ikomia application
         self.local_method = paramMap["local_method"]
         self.local_block_size = int(paramMap["local_block_size"])
@@ -68,9 +68,9 @@ class ThresholdParam(core.CWorkflowTaskParam):
         self.li_initialguess = float_or_none(paramMap["li_initialguess"])
 
 
-    def getParamMap(self):
+    def get_values(self):
         # Send parameters values to Ikomia application
-        paramMap = core.ParamMap()
+        paramMap = {}
         paramMap["local_method"] = self.local_method
         paramMap["local_block_size"] = str(self.local_block_size)
         paramMap["local_offset"] = str(self.local_offset)
@@ -106,36 +106,36 @@ class Threshold(dataprocess.C2dImageTask):
         dataprocess.C2dImageTask.__init__(self, name)
 
         if param is None:
-            self.setParam(ThresholdParam())
+            self.set_param_object(ThresholdParam())
         else:
-            self.setParam(copy.deepcopy(param))
+            self.set_param_object(copy.deepcopy(param))
 
-    def getProgressSteps(self):
+    def get_progress_steps(self):
         # Function returning the number of progress steps for this process
         # This is handled by the main progress bar of Ikomia application
         return 3
 
     def run(self):
         # Core function of your process
-        self.beginTaskRun()
+        self.begin_task_run()
 
         # Get input :
-        input = self.getInput(0)
+        input = self.get_input(0)
 
         # Get output :
-        output = self.getOutput(0)
+        output = self.get_output(0)
 
         # Get parameters :
-        param = self.getParam()
+        param = self.get_param_object()
 
         # Get image from input/output (numpy array):
-        srcImage = input.getImage()
+        srcImage = input.get_image()
 
         # Convert to grey Image if RGB
         if len(srcImage.shape) == 3:
             srcImage = cv2.cvtColor(srcImage, cv2.COLOR_RGB2GRAY)
 
-        self.emitStepProgress()
+        self.emit_step_progress()
             
         # threshold methods
         if param.local_method == "Otsu":
@@ -168,18 +168,18 @@ class Threshold(dataprocess.C2dImageTask):
             hyst = apply_hysteresis_threshold(edges, param.hysteresis_low, param.hysteresis_hight)
             proc_img = hight + hyst
 
-        self.emitStepProgress()
+        self.emit_step_progress()
         
         # Set image of input/output (numpy array):
         if param.local_method != "Multi otsu" and param.local_method != "Hysteresis":
             proc_img = (srcImage > thresh).astype(np.uint8) * 255
         
-        output.setImage(proc_img)
+        output.set_image(proc_img)
 
          # Step progress bar:
-        self.emitStepProgress()
-        # Call endTaskRun to finalize process
-        self.endTaskRun()
+        self.emit_step_progress()
+        # Call end_task_run to finalize process
+        self.end_task_run()
 
 
 # --------------------
@@ -192,7 +192,7 @@ class ThresholdFactory(dataprocess.CTaskFactory):
         dataprocess.CTaskFactory.__init__(self)
         # process information
         self.info.name = "skimage_threshold"
-        self.info.shortDescription = "Compilation of well-known thresholding methods from scikit-image library."
+        self.info.short_description = "Compilation of well-known thresholding methods from scikit-image library."
         self.info.description = "Compilation of well-known thresholding methods from scikit-image library: " \
                                 "Otsu, Multi-Otsu, Yen, IsoData, Li, Mean, Minimum, Local, Niblack, Sauvola " \
                                 "Triangle, Hysteresis."
@@ -204,8 +204,8 @@ class ThresholdFactory(dataprocess.CTaskFactory):
         self.info.license = "MIT License"
         self.info.version = "1.0.1"
         self.info.repo = "https://github.com/Ikomia-dev/IkomiaPluginsPython"
-        self.info.documentationLink = "https://scikit-image.org/docs/dev/api/skimage.filters.html"
-        self.info.iconPath = "icons/scikit.png"
+        self.info.documentation_link = "https://scikit-image.org/docs/dev/api/skimage.filters.html"
+        self.info.icon_path = "icons/scikit.png"
         self.info.keywords = "sci-kit,segmentation,threshold,otsu,yen,iso data,li,mean,minimum,local,niblack,sauvola,triangle,multi otsu,hysteresis"
 
     def create(self, param=None):

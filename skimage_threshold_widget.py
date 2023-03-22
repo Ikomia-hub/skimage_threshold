@@ -68,7 +68,7 @@ class ThresholdWidget(core.CWorkflowTaskWidget):
         self.gridLayout.addWidget(self.stack, 2, 0)
 
         layout_ptr = qtconversion.PyQtToQt(self.gridLayout)
-        self.setLayout(layout_ptr)
+        self.set_layout(layout_ptr)
 
         # update left parameter panel
         if self.parameters.local_method != None:
@@ -562,7 +562,7 @@ class ThresholdWidget(core.CWorkflowTaskWidget):
         else :
             self.spin_r.show()
 
-    def onApply(self):
+    def on_apply(self):
         # Apply button clicked slot
         self.parameters.local_method = self.stack_comboMethod.currentText()
         if self.stack_comboMethod.currentText() == "Local":
@@ -616,7 +616,7 @@ class ThresholdWidget(core.CWorkflowTaskWidget):
                 self.parameters.li_initialguess = self.spin_initialguess.value()
 
         # Send signal to launch the process
-        self.emitApply(self.parameters)
+        self.emit_apply(self.parameters)
 
 
 # --------------------

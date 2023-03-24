@@ -70,29 +70,30 @@ class ThresholdParam(core.CWorkflowTaskParam):
 
     def get_values(self):
         # Send parameters values to Ikomia application
-        paramMap = {}
-        paramMap["local_method"] = self.local_method
-        paramMap["local_block_size"] = str(self.local_block_size)
-        paramMap["local_offset"] = str(self.local_offset)
-        paramMap["local_mth"] = self.local_mth
-        paramMap["local_mode"] = self.local_mode
-        paramMap["local_cval"] = str(self.local_cval)
-        paramMap["local_param"] = str(self.local_param)
-        paramMap["niblackSauvola_window_size"] = str(self.niblackSauvola_window_size)
-        paramMap["niblackSauvola_k"] = str(self.niblackSauvola_k)
-        paramMap["sauvola_r"] = str(self.sauvola_r)
-        paramMap["triangle_nbins"] = str(self.triangle_nbins)
-        paramMap["multiotsu_classes"] = str(self.multiotsu_classes)
-        paramMap["multiotsu_nbins"] = str(self.multiotsu_nbins)
-        paramMap["hysteresis_low"] = str(self.hysteresis_low)
-        paramMap["hysteresis_hight"] = str(self.hysteresis_hight)
-        paramMap["minimum_nbins"] = str(self.minimum_nbins)
-        paramMap["minimum_maxiter"] = str(self.minimum_maxiter)
-        paramMap["otsu_nbins"] = str(self.otsu_nbins)
-        paramMap["yen_nbins"] = str(self.yen_nbins)
-        paramMap["isodata_nbins"] = str(self.isodata_nbins)
-        paramMap["li_tolerance"] = str(self.li_tolerance)
-        paramMap["li_initialguess"] = str(self.li_initialguess)
+        paramMap = {
+            "local_method": self.local_method,
+            "local_block_size": str(self.local_block_size),
+            "local_offset": str(self.local_offset),
+            "local_mth": self.local_mth,
+            "local_mode": self.local_mode,
+            "local_cval": str(self.local_cval),
+            "local_param": str(self.local_param),
+            "niblackSauvola_window_size": str(self.niblackSauvola_window_size),
+            "niblackSauvola_k": str(self.niblackSauvola_k),
+            "sauvola_r": str(self.sauvola_r),
+            "triangle_nbins": str(self.triangle_nbins),
+            "multiotsu_classes": str(self.multiotsu_classes),
+            "multiotsu_nbins": str(self.multiotsu_nbins),
+            "hysteresis_low": str(self.hysteresis_low),
+            "hysteresis_hight": str(self.hysteresis_hight),
+            "minimum_nbins": str(self.minimum_nbins),
+            "minimum_maxiter": str(self.minimum_maxiter),
+            "otsu_nbins": str(self.otsu_nbins),
+            "yen_nbins": str(self.yen_nbins),
+            "isodata_nbins": str(self.isodata_nbins),
+            "li_tolerance": str(self.li_tolerance),
+            "li_initialguess": str(self.li_initialguess)
+            }
         return paramMap
 
 

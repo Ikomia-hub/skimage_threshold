@@ -1,4 +1,3 @@
-from ikomia.core import task, ParamMap
 import cv2
 from ikomia.utils.tests import run_for_test
 import logging
@@ -13,7 +12,7 @@ def test(t, data_dict):
 
     for method in ["Otsu", "Yen", "Iso data", "Li", "Mean", "Minimum", "Local", "Niblack", "Sauvola", "Triangle",
                    "Multi otsu", "Hysteresis"]:
-        params = task.get_parameters(t)
+        params = t.get_parameters()
         params["local_method"] = method
-        task.set_parameters(t, params)
+        t.set_parameters(params)
         yield run_for_test(t)

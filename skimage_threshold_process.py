@@ -194,9 +194,6 @@ class ThresholdFactory(dataprocess.CTaskFactory):
         # process information
         self.info.name = "skimage_threshold"
         self.info.short_description = "Compilation of well-known thresholding methods from scikit-image library."
-        self.info.description = "Compilation of well-known thresholding methods from scikit-image library: " \
-                                "Otsu, Multi-Otsu, Yen, IsoData, Li, Mean, Minimum, Local, Niblack, Sauvola " \
-                                "Triangle, Hysteresis."
         self.info.authors = "Ikomia team"
         self.info.path = "Plugins/Python/Segmentation/Threshold"
         self.info.article = ""
@@ -204,7 +201,8 @@ class ThresholdFactory(dataprocess.CTaskFactory):
         self.info.year = 2020
         self.info.license = "MIT License"
         self.info.version = "1.0.1"
-        self.info.repo = "https://github.com/Ikomia-dev/IkomiaPluginsPython"
+        self.info.repository = "https://github.com/Ikomia-hub/skimage_threshold"
+        self.info.original_repository = "https://github.com/scikit-image/scikit-image"
         self.info.documentation_link = "https://scikit-image.org/docs/dev/api/skimage.filters.html"
         self.info.icon_path = "icons/scikit.png"
         self.info.keywords = "sci-kit,segmentation,threshold,otsu,yen,iso data,li,mean,minimum,local,niblack,sauvola,triangle,multi otsu,hysteresis"

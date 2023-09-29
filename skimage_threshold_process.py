@@ -206,6 +206,8 @@ class ThresholdFactory(dataprocess.CTaskFactory):
         self.info.documentation_link = "https://scikit-image.org/docs/dev/api/skimage.filters.html"
         self.info.icon_path = "icons/scikit.png"
         self.info.keywords = "sci-kit,segmentation,threshold,otsu,yen,iso data,li,mean,minimum,local,niblack,sauvola,triangle,multi otsu,hysteresis"
+        self.info.algo_type = core.AlgoType.OTHER
+        self.info.algo_tasks = "NONE"
 
     def create(self, param=None):
         # Create process object

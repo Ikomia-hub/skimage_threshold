@@ -21,7 +21,7 @@
 
 Compilation of well-known thresholding methods from scikit-image library: Otsu, Multi-Otsu, Yen, IsoData, Li, Mean, Minimum, Local, Niblack, Sauvola Triangle, Hysteresis.
 
-![Results](https://raw.githubusercontent.com/Ikomia-hub/skimage_threshold/feat/new_readme/icons/results.png)
+![Results](https://raw.githubusercontent.com/Ikomia-hub/skimage_threshold/main/icons/results.png)
 
 ## :rocket: Use with Ikomia API
 
